@@ -53,14 +53,11 @@ func DH_generate_G_P() (g,p Uint128){
 	binary.Read(buff2,binary.BigEndian,&(p.Low))
 	
 	g.Str_16 = make([]byte, dh_key_length)
-	_,err := rand.Read(g.Str_16)
-	if err != nil {
-		fmt.Println("error:",err)
-	}
-	buff3 := bytes.NewBuffer(g.Str_16[:8])
-	binary.Read(buff3,binary.BigEndian,&(g.High))
-	buff4 := bytes.NewBuffer(g.Str_16[8:16])
-	binary.Read(buff4,binary.BigEndian,&(g.Low))
+	g.High = 0
+	g.Low = 5
+	
+	binary.BigEndian.PutUint64(g.Str_16[:8], g.High)
+	binary.BigEndian.PutUint64(g.Str_16[8:16],g.Low)
 	
 	
 	return 
