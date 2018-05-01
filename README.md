@@ -1,2 +1,2 @@
 # dhexchangedemo
-a simple DH exchange demo
+a simple DH exchange demo.
